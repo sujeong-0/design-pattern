@@ -7,6 +7,11 @@ import lombok.ToString;
  */
 @ToString
 public class ForecastDisplay implements Observer, DisplayElement{
+	public ForecastDisplay(WeatherData weatherData) {
+		this.weatherData = weatherData;
+	}
+	private final WeatherData weatherData;
+
 	/**
 	 * 습도 값
 	 */
@@ -21,10 +26,11 @@ public class ForecastDisplay implements Observer, DisplayElement{
 	private int pressure = 0 ;
 
 	@Override
-	public void update(int pressure, int humidity, int temperature) {
-		this.humidity = humidity;
-		this.temperature = temperature;
-		this.pressure = pressure;
+	public void update() {
+
+		this.pressure = weatherData.getPressure();
+		this.humidity = weatherData.getHumidity();
+		this.temperature= weatherData.getTemperature();
 
 		// 예측하는 알고리즘 대신
 		this.humidity += 1;

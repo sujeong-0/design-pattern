@@ -7,11 +7,12 @@ package com.deepdive.designpattern.observer.apply;
 public class Main {
 
 	public static void main(String[] args) {
-		CurrentConditionsDisplay display1 = new CurrentConditionsDisplay();
-		StatisticsDisplay display2 = new StatisticsDisplay();
-		ForecastDisplay display3 = new ForecastDisplay();
-
 		WeatherData weatherData = new WeatherData();
+
+		CurrentConditionsDisplay display1 = new CurrentConditionsDisplay(weatherData);
+		StatisticsDisplay display2 = new StatisticsDisplay(weatherData);
+		ForecastDisplay display3 = new ForecastDisplay(weatherData);
+
 
 		System.out.println("--- 옵저버 등록 ---");
 		weatherData.registerObserver(display1);

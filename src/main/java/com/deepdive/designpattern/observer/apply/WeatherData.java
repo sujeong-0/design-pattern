@@ -13,14 +13,17 @@ public class WeatherData implements Subject{
 	/**
 	 * 기압 값
 	 */
+	@Getter
 	private int pressure = 0;
 	/**
 	 * 습도 값
 	 */
+	@Getter
 	private int humidity = 0;
 	/**
 	 * 온도 값
 	 */
+	@Getter
 	private int temperature = 0;
 
 
@@ -39,7 +42,7 @@ public class WeatherData implements Subject{
 	@Override
 	public void notifyObservers() {
 		for (Observer observer : observerList) {
-			observer.update(this.pressure, this.humidity, this.temperature); // 데이터 전달
+			observer.update(); // 데이터 전달
 		}
 	}
 

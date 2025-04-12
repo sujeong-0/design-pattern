@@ -10,6 +10,11 @@ import lombok.ToString;
 @ToString
 public class CurrentConditionsDisplay implements Observer, DisplayElement{
 
+	public CurrentConditionsDisplay(WeatherData weatherData) {
+		this.weatherData = weatherData;
+	}
+
+	private final WeatherData weatherData;
 	/**
 	 * 습도 값
 	 */
@@ -21,9 +26,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement{
 
 
 	@Override
-	public void update(int pressure, int humidity, int temperature) {
-		this.humidity = humidity;
-		this.temperature = temperature;
+	public void update() {
+		this.humidity = weatherData.getHumidity();
+		this.temperature =  weatherData.getTemperature();
 		display();
 	}
 

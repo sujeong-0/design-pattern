@@ -18,6 +18,11 @@ public class StatisticsDisplay implements Observer, DisplayElement{
 	/** 개수 인덱스 */
 	private int COUNT =3;
 
+
+	public StatisticsDisplay(WeatherData weatherData) {
+		this.weatherData = weatherData;
+	}
+	private final WeatherData weatherData;
 	/**
 	 * 기압 값
 	 */
@@ -33,7 +38,10 @@ public class StatisticsDisplay implements Observer, DisplayElement{
 
 
 	@Override
-	public void update(int pressure, int humidity, int temperature) {
+	public void update() {
+		int pressure = weatherData.getPressure();
+		int humidity = weatherData.getHumidity();
+		int temperature= weatherData.getTemperature();
 		if (pressures[MIN] > pressure || pressures[COUNT] ==0  ) {
 			pressures[MIN] = pressure;
 		}
