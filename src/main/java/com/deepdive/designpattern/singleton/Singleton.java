@@ -5,13 +5,19 @@ package com.deepdive.designpattern.singleton;
  */
 public class Singleton {
 
-	private static Singleton instance = new Singleton();
+	private volatile static Singleton instance;
 
 	private Singleton() {
 
 	}
 
 	public static Singleton getInstance() {
+
+		synchronized (Singleton.class) { // 처음에만 동기화 됨
+			if (instance == null) {
+				instance = new Singleton();
+			}
+		}
 		return instance;
 	}
 
